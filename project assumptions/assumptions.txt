@@ -1,0 +1,5 @@
+1. Time is always running out
+2. Getting more time by chopping the tree
+3. Chopping the tree causes the branches to fall
+4. The player must avoid the falling branches
+5. Repeating unitl the time runs or the player is squished

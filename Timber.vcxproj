@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\Timber.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="inc\main.h" />
+    <ClInclude Include="inc\Timber.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

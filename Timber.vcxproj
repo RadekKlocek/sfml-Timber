@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Graph.cpp" />
     <ClCompile Include="src\Timber.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\Graph.hpp" />
     <ClInclude Include="inc\Timber.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

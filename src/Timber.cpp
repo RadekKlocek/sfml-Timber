@@ -64,6 +64,9 @@ int main()
 	float cloud2ASpeed = 0.0f;
 	float cloud3ASpeed = 0.0f;
 
+	//Variable to control time itself
+	sf::Clock clock;
+
 	while (window.isOpen())
 	{
 		/*********************************************
@@ -76,6 +79,8 @@ int main()
 		/*********************************************
 		Update the scene
 		*********************************************/
+		//Measure time
+		sf::Time dt = clock.restart();
 
 		/*********************************************
 		Draw the scene

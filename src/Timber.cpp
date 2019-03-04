@@ -101,7 +101,7 @@ int main()
 				(beeSpeed*dt.asSeconds()),
 				spriteBee.getPosition().y);
 			//Has the bee reached the right hand edge of the screen?
-			if (spriteBee.getPosition().y < -100)
+			if (spriteBee.getPosition().x < -60)
 			{
 				//Set it up ready to be a whole new cloud next frame
 				beeActive = false;

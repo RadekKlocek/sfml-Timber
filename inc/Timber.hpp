@@ -3,6 +3,7 @@
 
 /************Include SFML header files****************/
 #include "SFML/Graphics.hpp"
+#include <sstream>
 
 /****************************************************/
 

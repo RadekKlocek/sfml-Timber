@@ -67,6 +67,18 @@ int main()
 	//Variable to control time itself
 	sf::Clock clock;
 
+	//Time bar
+	sf::RectangleShape timeBar;
+	float timeBarStartWidth = 400;
+	float timeBarHeight = 80;
+	timeBar.setSize(sf::Vector2f(timeBarStartWidth, timeBarHeight));
+	timeBar.setFillColor(sf::Color::Red);
+	timeBar.setPosition((1920 / 2) - timeBarStartWidth / 2, 980);
+
+	sf::Time getTimeTotal;
+	float timeRemaining = 6.0f;
+	float timeBarWidthPerSecond = timeBarStartWidth / timeRemaining;
+
 	//Track whether the game is running
 	bool paused = true;
 	
@@ -116,14 +128,42 @@ int main()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
 		{
 			paused = false;
+
+			//Reset the time and the score
+			score = 0;
+			timeRemaining = 5;
 		}
+		/*********************************************
+		Update the scene
+		*********************************************/
 
 		if (!paused) {
-			/*********************************************
-			Update the scene
-			*********************************************/
+
 			//Measure time
 			sf::Time dt = clock.restart();
+
+			//Subtract from the amount of time remaining
+			timeRemaining -= dt.asSeconds();
+			//size up the time bar
+			timeBar.setSize(sf::Vector2f(timeBarWidthPerSecond *
+				timeRemaining, timeBarHeight));
+
+			if (timeRemaining <= 0.0f)
+			{
+				//Pause the game
+				paused = true;
+
+				//Change the message shown to the player
+				messageText.setString("Out of time!!");
+
+				//Reposition the text based on its new size
+				sf::FloatRect textRect = messageText.getLocalBounds();
+				messageText.setOrigin(textRect.left +
+					textRect.width / 2.0f,
+					textRect.top +
+					textRect.height / 2.0f);
+				messageText.setPosition(1920 / 2.0f, 1000 / 2.0f);
+			}
 
 			//Setup bee
 			if (!beeActive) {
@@ -259,6 +299,9 @@ int main()
 
 		//Draw the score
 		window.draw(scoreText);
+
+		//Draw the timebar
+		window.draw(timeBar);
 		if (paused)
 		{
 			//Draw our message

@@ -180,6 +180,22 @@ int main()
 	//Control the player input
 	bool acceptInput = false;
 
+	//Prepare the sound
+	sf::SoundBuffer chopBuffer;
+	chopBuffer.loadFromFile("sound/chop.wav");
+	sf::Sound chop;
+	chop.setBuffer(chopBuffer);
+
+	sf::SoundBuffer deathBuffer;
+	deathBuffer.loadFromFile("sound/death.wav");
+	sf::Sound death;
+	death.setBuffer(deathBuffer);
+
+	sf::SoundBuffer ootBuffer;
+	ootBuffer.loadFromFile("sound/out_of_time.wav");
+	sf::Sound oot;
+	oot.setBuffer(ootBuffer);
+
 	while (window.isOpen())
 	{
 		/*********************************************
@@ -253,6 +269,9 @@ int main()
 				logActive = true;
 
 				acceptInput = false;
+				
+				//play sound
+				chop.play();
 			}
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
 			{
@@ -276,6 +295,9 @@ int main()
 				logActive = true;
 
 				acceptInput = false;
+
+				//play sound
+				chop.play();
 			}
 		}
 		/*********************************************
@@ -308,6 +330,9 @@ int main()
 					textRect.top +
 					textRect.height / 2.0f);
 				messageText.setPosition(1920 / 2.0f, 1000 / 2.0f);
+
+				//play sound
+				oot.play();
 			}
 
 			//Setup bee
@@ -463,6 +488,36 @@ int main()
 					spriteLog.setPosition(810, 720);
 				}
 				
+			}
+			
+			//Has the player been squished by a branch?
+			if (branchPosition[5] == playerSide)
+			{
+				//death
+				paused = true;
+				acceptInput = false;
+
+				//Draw the gravestone
+				spriteRIP.setPosition(525, 760);
+
+				//hide the player
+				spritePlayer.setPosition(2000, 660);
+
+				//Change the text of the message
+				messageText.setString("SQUISHED!!");
+
+				//Center in on the screen
+				sf::FloatRect textRect = messageText.getLocalBounds();
+
+				messageText.setOrigin(textRect.left +
+					textRect.width / 2.0f,
+					textRect.top + textRect.height / 2.0f);
+
+				messageText.setPosition(1920 / 2.0f,
+					1080 / 2.0f);
+
+				//play sound
+				death.play();
 			}
 
 		}

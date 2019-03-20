@@ -1,4 +1,5 @@
 #include "Timber.hpp"
+#include "Graph.hpp"
 
 //Function declaration
 void updateBranches(int seed);
